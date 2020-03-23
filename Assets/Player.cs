@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     [Header("Horizontal Movement")]
     private float moveSpeed = 10f;
     private Vector2 direction;
+    private bool movingRight = true;
 
     [Header("Components")]
     public Rigidbody2D rb;
