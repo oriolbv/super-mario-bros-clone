@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
 
     [Header("Components")]
     public Rigidbody2D rb;
+    public Animator animator;
 
     void Update()
     {
@@ -25,5 +26,7 @@ public class Player : MonoBehaviour
     void moveCharacter(float horizontal) 
     {
         rb.AddForce(Vector2.right * horizontal * moveSpeed);
+
+        animator.SetFloat("horizontal", Mathf.Abs(rb.velocity.x));
     }
 }
