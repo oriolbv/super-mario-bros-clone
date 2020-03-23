@@ -13,6 +13,7 @@ public class CharacterController : MonoBehaviour
 
     void Update()
     {
-        
+        animator.SetFloat("horizontal", Mathf.Abs(Input.GetAxis("Horizontal")));
+        animator.SetFloat("vertical", Input.GetAxis("Vertical"));
     }
 }
