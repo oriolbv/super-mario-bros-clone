@@ -13,6 +13,10 @@ public class Player : MonoBehaviour
     public Rigidbody2D rb;
     public Animator animator;
 
+    [Header("Physics")]
+    public float maxSpeed = 7f;
+    public float linearDrag = 4f;
+
     void Update()
     {
         // Left direction: -1 | Idle: 0 | Right direction: 1
@@ -22,6 +26,7 @@ public class Player : MonoBehaviour
     void FixedUpdate() 
     {
         moveCharacter(direction.x);
+        modifyPhysics();
     }
 
     void moveCharacter(float horizontal) 
@@ -33,6 +38,25 @@ public class Player : MonoBehaviour
         if ((horizontal > 0 && !movingRight) || (horizontal < 0 && movingRight)) 
         {
             Flip();
+        }
+
+        if (Mathf.Abs(rb.velocity.x) > maxSpeed) 
+        {
+            rb.velocity = new Vector2(Mathf.Sign(rb.velocity.x) * maxSpeed, rb.velocity.y);
+        }
+    }
+
+    void modifyPhysics()
+    {
+        bool changingDirections = (direction.x > 0 && rb.velocity.x < 0) || (direction.x < 0 && rb.velocity.x > 0);
+
+        if (Mathf.Abs(direction.x) < 0.4f || changingDirections) 
+        {
+            rb.drag = linearDrag;
+        }
+        else
+        {
+            rb.drag = 0f;
         }
     }
 
