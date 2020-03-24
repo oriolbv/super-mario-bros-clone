@@ -29,5 +29,16 @@ public class Player : MonoBehaviour
         rb.AddForce(Vector2.right * horizontal * moveSpeed);
 
         animator.SetFloat("horizontal", Mathf.Abs(rb.velocity.x));
+
+        if ((horizontal > 0 && !movingRight) || (horizontal < 0 && movingRight)) 
+        {
+            Flip();
+        }
+    }
+
+    void Flip() 
+    {
+        movingRight = !movingRight;
+        transform.rotation = Quaternion.Euler(0, movingRight ? 0 : 180, 0);
     }
 }
