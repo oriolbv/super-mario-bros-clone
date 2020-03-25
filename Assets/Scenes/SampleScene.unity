@@ -350,7 +350,7 @@ GameObject:
   - component: {fileID: 949572301}
   - component: {fileID: 949572303}
   - component: {fileID: 949572304}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -846,8 +846,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1113629407}
   - component: {fileID: 1113629409}
-  - component: {fileID: 1113629410}
   - component: {fileID: 1113629408}
+  - component: {fileID: 1113629410}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -929,6 +929,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 1113629409}
   animator: {fileID: 856903297}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  maxSpeed: 7
+  linearDrag: 4
+  onGround: 0
 --- !u!1 &1542856566
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,13 +12,19 @@ public class Player : MonoBehaviour
     [Header("Components")]
     public Rigidbody2D rb;
     public Animator animator;
+    public LayerMask groundLayer;
 
     [Header("Physics")]
     public float maxSpeed = 7f;
     public float linearDrag = 4f;
 
+    [Header("Collision")]
+    public bool onGround = false;
+
     void Update()
     {
+        onGround = Physics2D.Raycast(transform.position, Vector2.down, 0.6f, groundLayer);
+
         // Left direction: -1 | Idle: 0 | Right direction: 1
         direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
     }
