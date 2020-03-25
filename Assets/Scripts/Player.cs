@@ -18,6 +18,8 @@ public class Player : MonoBehaviour
     public float maxSpeed = 7f;
     public float linearDrag = 4f;
     public float jumpSpeed = 3f;
+    public float jumpDelay = 0.25f;
+    private float jumpTimer;
     public float gravity = 1;
     public float fallMultiplier = 5f;
 
@@ -29,9 +31,9 @@ public class Player : MonoBehaviour
     {
         onGround = Physics2D.Raycast(transform.position, Vector2.down, groundLength, groundLayer);
 
-        if (Input.GetButtonDown("Jump") && onGround) 
+        if (Input.GetButtonDown("Jump")) 
         {
-            Jump();
+            jumpTimer = Time.time + jumpDelay;
         }
 
         // Left direction: -1 | Idle: 0 | Right direction: 1
@@ -41,6 +43,11 @@ public class Player : MonoBehaviour
     void FixedUpdate() 
     {
         moveCharacter(direction.x);
+        if (jumpTimer > Time.time  && onGround) 
+        {
+            Jump();
+        }
+
         modifyPhysics();
     }
 
@@ -65,6 +72,7 @@ public class Player : MonoBehaviour
     {
         rb.velocity = new Vector2(rb.velocity.x, 0);
         rb.AddForce(Vector2.up * jumpSpeed, ForceMode2D.Impulse);
+        jumpTimer = 0;
     }
 
     void modifyPhysics()
