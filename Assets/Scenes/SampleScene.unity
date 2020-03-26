@@ -192,7 +192,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   followObject: {fileID: 1113629406}
-  followOffset: {x: 10, y: 0}
+  followOffset: {x: 6, y: 2}
   speed: 3
 --- !u!20 &519420031
 Camera:
@@ -1052,7 +1052,7 @@ MonoBehaviour:
     m_Bits: 256
   maxSpeed: 7
   linearDrag: 4
-  jumpSpeed: 3
+  jumpSpeed: 12
   jumpDelay: 0.25
   gravity: 1
   fallMultiplier: 5
