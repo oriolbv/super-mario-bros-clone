@@ -31,6 +31,7 @@ public class Player : MonoBehaviour
     {
         onGround = Physics2D.Raycast(transform.position, Vector2.down, groundLength, groundLayer);
 
+        animator.SetBool("on_ground", onGround);
         if (Input.GetButtonDown("Jump")) 
         {
             jumpTimer = Time.time + jumpDelay;
