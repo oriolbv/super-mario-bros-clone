@@ -9,13 +9,11 @@ public class CameraFollower : MonoBehaviour{
     private Vector2 threshold;
     private Rigidbody2D rb;
 
-    // Start is called before the first frame update
     void Start(){
         threshold = calculateThreshold();
         rb = followObject.GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
     void FixedUpdate(){
         Vector2 follow = followObject.transform.position;
         float xDifference = Vector2.Distance(Vector2.right * transform.position.x, Vector2.right * follow.x);
