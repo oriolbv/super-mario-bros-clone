@@ -9,9 +9,20 @@ public class CameraFollower : MonoBehaviour{
     private Vector2 threshold;
     private Rigidbody2D rb;
 
+    public float targetAspect = 1.78f;
+
     void Start(){
         threshold = calculateThreshold();
         rb = followObject.GetComponent<Rigidbody2D>();
+
+        float windowAspect = (float)Screen.width / (float)Screen.height;
+        float scaleHeight = windowAspect / targetAspect;
+        Camera camera = GetComponent<Camera>();
+
+        if (scaleHeight < 1.0f)
+        {  
+            camera.orthographicSize = camera.orthographicSize / scaleHeight;
+        }
     }
 
     void FixedUpdate(){
