@@ -5928,8 +5928,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1113629407}
   - component: {fileID: 1113629409}
-  - component: {fileID: 1113629408}
   - component: {fileID: 1113629410}
+  - component: {fileID: 1113629408}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -5952,8 +5952,8 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!68 &1113629408
-EdgeCollider2D:
+--- !u!70 &1113629408
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -5966,16 +5966,8 @@ EdgeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: -0.4039883, y: -0.499826}
-  - {x: -0.41324782, y: 0.5050071}
-  - {x: -0.10090813, y: 0.50312215}
-  - {x: -0.030365951, y: 0.41088355}
-  - {x: 0.04615446, y: 0.5022976}
-  - {x: 0.40372142, y: 0.5003504}
-  - {x: 0.4109749, y: -0.5000828}
-  - {x: -0.40590534, y: -0.49977118}
+  m_Size: {x: 0.5, y: 1}
+  m_Direction: 0
 --- !u!50 &1113629409
 Rigidbody2D:
   serializedVersion: 4
@@ -5995,7 +5987,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &1113629410
 MonoBehaviour:
