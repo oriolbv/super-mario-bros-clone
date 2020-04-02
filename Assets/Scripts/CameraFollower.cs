@@ -34,9 +34,6 @@ public class CameraFollower : MonoBehaviour{
         if(Mathf.Abs(xDifference) >= threshold.x){
             newPosition.x = follow.x;
         }
-        // if(Mathf.Abs(yDifference) >= threshold.y){
-        //     newPosition.y = follow.y;
-        // }
         float moveSpeed = rb.velocity.magnitude > speed ? rb.velocity.magnitude : speed;
         transform.position = Vector3.MoveTowards(transform.position, newPosition, moveSpeed * Time.deltaTime);
     }
