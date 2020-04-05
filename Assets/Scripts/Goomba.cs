@@ -33,8 +33,14 @@ public class Goomba : ExtendedBehaviour
 
     public void Hurt()
     {
+        // Object should stop moving
         stopMovement = true;
+        // Animation transition to 'goomba_dead'
         animator.SetBool("is_hurt", true);
-        //Destroy(this.gameObject);
+        // Destroy object after some time
+        Wait(0.8f, () => {
+            Destroy(this.gameObject);
+        });
     }
+
 }
