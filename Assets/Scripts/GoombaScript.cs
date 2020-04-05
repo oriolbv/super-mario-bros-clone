@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class GoombaScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public float Speed;
+    public bool MoveRight;
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (MoveRight) 
+        {
+            transform.Translate(2 * Time.deltaTime * Speed, 0, 0);
+            // transform.localScale = new Vector2(1, 1);
+        }
+        else 
+        {
+            transform.Translate(-2 * Time.deltaTime * Speed, 0, 0);
+            // transform.localScale = new Vector2(-1, 1);
+        }
     }
 }
