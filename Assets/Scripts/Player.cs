@@ -119,4 +119,33 @@ public class Player : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawLine(transform.position, transform.position + Vector3.down * groundLength);    
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Goomba goomba = collision.collider.GetComponent<Goomba>();
+        if (goomba != null)
+        {
+            foreach (ContactPoint2D point in collision.contacts)
+            {
+                Debug.Log(point.normal);
+                Debug.DrawLine(point.point, point.point + point.normal, Color.red, 10);
+                if (point.normal.y >= 0.9f)
+                {
+                    Vector2 velocity = rb.velocity;
+                    velocity.y = jumpSpeed;
+                    rb.velocity = velocity;
+                    goomba.Hurt();
+                }
+                else
+                {
+                    Hurt();
+                }
+            }     
+        }
+    }
+
+    void Hurt()
+    {
+        Debug.Log("You are dead man");
+    }
 }
