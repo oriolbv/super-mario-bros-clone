@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Goomba : MonoBehaviour
+public class Goomba : ExtendedBehaviour
 {
 
     [Header("Components")]
