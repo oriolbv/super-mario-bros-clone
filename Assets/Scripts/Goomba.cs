@@ -4,25 +4,37 @@ using UnityEngine;
 
 public class Goomba : MonoBehaviour
 {
+
+    [Header("Components")]
+    public Rigidbody2D rb;
+    public Animator animator;
+
     public float Speed;
     public bool MoveRight;
 
+    private bool stopMovement = false;
+
     void Update()
     {
-        if (MoveRight) 
+        if (!stopMovement)
         {
-            transform.Translate(2 * Time.deltaTime * Speed, 0, 0);
-            // transform.localScale = new Vector2(1, 1);
-        }
-        else 
-        {
-            transform.Translate(-2 * Time.deltaTime * Speed, 0, 0);
-            // transform.localScale = new Vector2(-1, 1);
-        }
+            if (MoveRight)
+            {
+                transform.Translate(2 * Time.deltaTime * Speed, 0, 0);
+                // transform.localScale = new Vector2(1, 1);
+            }
+            else
+            {
+                transform.Translate(-2 * Time.deltaTime * Speed, 0, 0);
+                // transform.localScale = new Vector2(-1, 1);
+            }
+        } 
     }
 
     public void Hurt()
     {
-        Destroy(this.gameObject);
+        stopMovement = true;
+        animator.SetBool("is_hurt", true);
+        //Destroy(this.gameObject);
     }
 }
