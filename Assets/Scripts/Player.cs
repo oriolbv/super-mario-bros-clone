@@ -129,7 +129,7 @@ public class Player : ExtendedBehaviour
             {
                 Debug.Log(point.normal);
                 Debug.DrawLine(point.point, point.point + point.normal, Color.red, 10);
-                if (point.normal.y >= 0.9f)
+                if (point.normal.y >= 0.8f)
                 {
                     Vector2 velocity = rb.velocity;
                     velocity.y = jumpSpeed;
