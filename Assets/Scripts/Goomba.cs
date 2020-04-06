@@ -21,12 +21,10 @@ public class Goomba : ExtendedBehaviour
             if (MoveRight)
             {
                 transform.Translate(2 * Time.deltaTime * Speed, 0, 0);
-                // transform.localScale = new Vector2(1, 1);
             }
             else
             {
                 transform.Translate(-2 * Time.deltaTime * Speed, 0, 0);
-                // transform.localScale = new Vector2(-1, 1);
             }
         } 
     }
@@ -38,7 +36,7 @@ public class Goomba : ExtendedBehaviour
         // Animation transition to 'goomba_dead'
         animator.SetBool("is_hurt", true);
         // Destroy object after some time
-        Wait(0.8f, () => {
+        Wait(0.6f, () => {
             Destroy(this.gameObject);
         });
     }
