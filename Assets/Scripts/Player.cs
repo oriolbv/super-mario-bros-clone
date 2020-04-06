@@ -150,9 +150,10 @@ public class Player : ExtendedBehaviour
         Vector2 velocity = rb.velocity;
         velocity.y = jumpSpeed;
         rb.velocity = velocity;
+        Destroy(this.GetComponent<CapsuleCollider2D>());
         // Destroy object after some time
-        Wait(2f, () => {
-            Destroy(this.gameObject);
-        });
+        // Wait(1f, () => {
+        //     Destroy(this.gameObject);
+        // });
     }
 }
