@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : ExtendedBehaviour
 {
     [Header("Horizontal Movement")]
     private float moveSpeed = 10f;
@@ -146,6 +146,13 @@ public class Player : MonoBehaviour
 
     void Hurt()
     {
-        Debug.Log("You are dead man");
+        animator.SetBool("is_alive", false);
+        Vector2 velocity = rb.velocity;
+        velocity.y = jumpSpeed;
+        rb.velocity = velocity;
+        // Destroy object after some time
+        Wait(2f, () => {
+            Destroy(this.gameObject);
+        });
     }
 }
