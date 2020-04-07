@@ -18,6 +18,7 @@ public class GameplayManager : Singleton<GameplayManager>
     void Update()
     {
         _score.RemainingTime -= Time.deltaTime;
+        // Debug.Log(_score.RemainingTime);
         if (_score.RemainingTime < 0)
         {
             GameOver();

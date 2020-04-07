@@ -139,6 +139,7 @@ public class Player : ExtendedBehaviour
                 else
                 {
                     Hurt();
+                    break;
                 }
             }     
         }
@@ -151,9 +152,6 @@ public class Player : ExtendedBehaviour
         velocity.y = jumpSpeed;
         rb.velocity = velocity;
         Destroy(this.GetComponent<CapsuleCollider2D>());
-        // Destroy object after some time
-        // Wait(1f, () => {
-        //     Destroy(this.gameObject);
-        // });
+        GameplayManager.Instance.GameOver();
     }
 }
