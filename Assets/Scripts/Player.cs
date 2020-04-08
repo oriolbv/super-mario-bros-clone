@@ -145,6 +145,15 @@ public class Player : ExtendedBehaviour
         }
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Finish"))
+        {
+            Debug.Log("HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+        }
+    }
+
+
     void Hurt()
     {
         animator.SetBool("is_alive", false);
