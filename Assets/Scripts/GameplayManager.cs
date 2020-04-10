@@ -21,12 +21,13 @@ public class GameplayManager : Singleton<GameplayManager>
     // Update is called once per frame
     void Update()
     {
-        _score.RemainingTime -= Time.deltaTime;
-        RemainingTimeText.GetComponentInChildren<Text>().text = ((int)_score.RemainingTime).ToString();
-        if (_score.RemainingTime < 0)
-        {
-            GameOver();
-        }
+        // TODO
+        //_score.RemainingTime -= Time.deltaTime;
+        //RemainingTimeText.GetComponentInChildren<Text>().text = ((int)_score.RemainingTime).ToString();
+        //if (_score.RemainingTime < 0)
+        //{
+        //    GameOver();
+        //}
     }
 
     public void GameOver() 
