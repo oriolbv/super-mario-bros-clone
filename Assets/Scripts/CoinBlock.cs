@@ -19,6 +19,10 @@ public class CoinBlock : ExtendedBehaviour
         if (collision.collider.GetComponent<Player>() && collision.contacts[0].normal.y > 0.5f)
         {
             this.GetComponentInChildren<SpriteRenderer>().sprite = UsedBlockSprite;
+            this.transform.Translate(new Vector3(0, 0.2f, 0));
+            Wait(0.1f, () => {
+                this.transform.Translate(new Vector3(0, -0.2f, 0));
+            });
         }
     }
 }
