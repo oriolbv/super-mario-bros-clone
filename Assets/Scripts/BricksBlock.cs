@@ -4,17 +4,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class CoinBlock : ExtendedBehaviour
+public class BricksBlock : MonoBehaviour
 {
-    private bool _isCoinBlockInitialState;
-    public Sprite newSprite;
-    private Tile myTile;
+    private bool _isSuperMario;
     private Tilemap tilemap;
 
-    void Start()
+    private void Start()
     {
-        
-        _isCoinBlockInitialState = true;
+        // TODO: Super Mario behaviour
+        _isSuperMario = true;
         tilemap = this.GetComponentInChildren<Tilemap>();
     }
 
@@ -23,19 +21,11 @@ public class CoinBlock : ExtendedBehaviour
         Vector3 hitPosition = Vector3.zero;
         if (collision.collider.GetComponent<Player>() && collision.contacts[0].normal.y > 0.5f)
         {
-            myTile = new Tile();
-            if (_isCoinBlockInitialState)
+            if (_isSuperMario)
             {
                 hitPosition.x = (float)Math.Truncate(collision.contacts[0].point.x);
                 hitPosition.y = (float)Math.Truncate(collision.contacts[0].point.y);
-
-                Debug.Log(myTile.sprite);
-                Debug.Log(newSprite);
-                if (myTile.sprite != newSprite)
-                {
-                    myTile.sprite = newSprite;
-                    tilemap.SetTile(tilemap.WorldToCell(hitPosition), myTile);
-                }
+                tilemap.SetTile(tilemap.WorldToCell(hitPosition), null);
             }
         }
     }
