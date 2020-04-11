@@ -25,8 +25,8 @@ public class CoinBlock : ExtendedBehaviour
         {
             if (_isCoinBlockInitialState)
             {
-                hitPosition.x = Convert.ToInt32(collision.contacts[0].point.x);
-                hitPosition.y = Convert.ToInt32(collision.contacts[0].point.y);
+                hitPosition.x = (float)Math.Truncate(collision.contacts[0].point.x);
+                hitPosition.y = (float)Math.Truncate(collision.contacts[0].point.y);
 
                 Debug.Log(hitPosition.x);
                 Debug.Log(hitPosition.y);
