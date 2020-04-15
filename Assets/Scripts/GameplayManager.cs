@@ -31,7 +31,11 @@ public class GameplayManager : ExtendedBehaviour
         // RemainingTimeText.GetComponentInChildren<Text>().text = ((int)GameScore.Instance.RemainingTime).ToString();
         if (GameScore.Instance.RemainingTime < 0 || !GameScore.Instance.IsPlaying)
         {
-           GameOver();
+            GameOver();
+        }
+        else if (GameScore.Instance.IsWinner) 
+        {
+            WinGame();
         }
     }
 
@@ -45,6 +49,15 @@ public class GameplayManager : ExtendedBehaviour
         mainGameAudioSource.Play();
         Wait(3f, () => {
             SceneManager.LoadScene("LevelMenuScene");
+        });
+    }
+
+    public void WinGame() 
+    {
+        Debug.Log("You win!");
+        enabled = false;
+        Wait(3f, () => {
+            SceneManager.LoadScene("MenuScene");
         });
     }
 }

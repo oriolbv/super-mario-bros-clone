@@ -10,6 +10,7 @@ public class GameScore : Singleton<GameScore>
     private float _remainingTime;
 
     private bool _isPlaying;
+    private bool _isWinner;
 
     public GameScore() 
     {
@@ -21,6 +22,7 @@ public class GameScore : Singleton<GameScore>
         _coins = 0;
         _remainingTime = 300;
         _isPlaying = true;
+        _isWinner = false;
     }
 
     public void resetLives() 
@@ -86,6 +88,18 @@ public class GameScore : Singleton<GameScore>
         set 
         { 
             _isPlaying = value; 
+        }
+    }
+
+    public bool IsWinner
+    {
+        get 
+        { 
+            return _isWinner; 
+        }
+        set 
+        { 
+            _isWinner = value; 
         }
     }
 }

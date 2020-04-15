@@ -150,7 +150,7 @@ public class Player : ExtendedBehaviour
     {
         if (other.gameObject.CompareTag("Finish"))
         {
-            Debug.Log("HOLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+            GameScore.Instance.IsWinner = true;
         }
     }
 
