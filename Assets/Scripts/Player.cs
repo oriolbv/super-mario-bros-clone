@@ -30,7 +30,7 @@ public class Player : ExtendedBehaviour
     void Update()
     {
         onGround = Physics2D.Raycast(transform.position, Vector2.down, groundLength, groundLayer);
-        Debug.Log(onGround);
+
         animator.SetBool("on_ground", onGround);
         if (Input.GetButtonDown("Jump")) 
         {

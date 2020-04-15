@@ -26,9 +26,15 @@ public class Goomba : ExtendedBehaviour
             {
                 transform.Translate(-2 * Time.deltaTime * Speed, 0, 0);
             }
-        } 
+        }
     }
-
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            MoveRight = !MoveRight;
+        }
+    }
     public void Hurt()
     {
         // Object should stop moving

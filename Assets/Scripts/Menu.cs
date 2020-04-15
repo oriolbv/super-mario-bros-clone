@@ -9,7 +9,7 @@ public class Menu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            SceneManager.LoadScene("LevelScene");
+            SceneManager.LoadScene("LevelMenuScene");
         }
     }
 }

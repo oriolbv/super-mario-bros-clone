@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
+﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameplayManager : Singleton<GameplayManager>
 {
@@ -12,13 +10,20 @@ public class GameplayManager : Singleton<GameplayManager>
     public GameObject RemainingTimeText;
 
 
-    // Start is called before the first frame update
+    public AudioClip gameSongAudioClip;
+    public AudioClip marioDeadAudioClip;
+
+    private AudioSource mainGameAudioSource;
+
     void Start()
     {
         _score = new GameScore(0, 0, 400);
+
+        mainGameAudioSource = this.GetComponentInChildren<AudioSource>();
+        mainGameAudioSource.clip = gameSongAudioClip;
+        mainGameAudioSource.Play();
     }
 
-    // Update is called once per frame
     void Update()
     {
         // TODO
@@ -33,8 +38,13 @@ public class GameplayManager : Singleton<GameplayManager>
     public void GameOver() 
     {
         Debug.Log("This is the end");
+        // Change clip from Audio Source
+        mainGameAudioSource.clip = marioDeadAudioClip;
+        mainGameAudioSource.Play();
+        Wait(3f, () => {
+            SceneManager.LoadScene("LevelMenuScene");
+        });
     }
-
 
     // Properties
     public GameScore Score
