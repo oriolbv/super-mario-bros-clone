@@ -27,6 +27,7 @@ public class Player : ExtendedBehaviour
     public bool onGround = false;
     public float groundLength = 0.6f;
 
+
     void Update()
     {
         onGround = Physics2D.Raycast(transform.position, Vector2.down, groundLength, groundLayer);
@@ -161,6 +162,6 @@ public class Player : ExtendedBehaviour
         velocity.y = jumpSpeed;
         rb.velocity = velocity;
         Destroy(this.GetComponent<CapsuleCollider2D>());
-        GameplayManager.Instance.GameOver();
+        GameScore.Instance.IsPlaying = false;
     }
 }

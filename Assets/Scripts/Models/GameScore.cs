@@ -2,20 +2,45 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameScore
+public class GameScore : Singleton<GameScore>
 {
+    private int _lives;
     private int _score;
     private int _coins;
     private float _remainingTime;
 
-    public GameScore(int score, int coins, float remainingTime) 
+    private bool _isPlaying;
+
+    public GameScore() 
     {
-        _score = score;
-        _coins = coins;
-        _remainingTime = remainingTime;
+    }
+
+    public void initGameScore() 
+    {
+        _score = 0;
+        _coins = 0;
+        _remainingTime = 300;
+        _isPlaying = true;
+    }
+
+    public void resetLives() 
+    {
+        _lives = 3;
     }
 
     // Properties
+    public int Lives
+    {
+        get 
+        { 
+            return _lives; 
+        }
+        set 
+        { 
+            _lives = value; 
+        }
+    }
+
     public int Score
     {
         get 
@@ -49,6 +74,18 @@ public class GameScore
         set 
         { 
             _remainingTime = value; 
+        }
+    }
+
+    public bool IsPlaying
+    {
+        get 
+        { 
+            return _isPlaying; 
+        }
+        set 
+        { 
+            _isPlaying = value; 
         }
     }
 }
