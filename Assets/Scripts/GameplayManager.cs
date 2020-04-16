@@ -7,9 +7,10 @@ public class GameplayManager : ExtendedBehaviour
     [Header("UI Components")]
     public GameObject RemainingTimeText;
 
-    
+
     public AudioClip gameSongAudioClip;
     public AudioClip marioDeadAudioClip;
+    public AudioClip stageClearedAudioClip;
 
     private AudioSource mainGameAudioSource;
 
@@ -56,7 +57,9 @@ public class GameplayManager : ExtendedBehaviour
     {
         Debug.Log("You win!");
         enabled = false;
-        Wait(3f, () => {
+        mainGameAudioSource.clip = stageClearedAudioClip;
+        mainGameAudioSource.Play();
+        Wait(6f, () => {
             SceneManager.LoadScene("MenuScene");
         });
     }

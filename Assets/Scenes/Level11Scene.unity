@@ -1185,6 +1185,8 @@ MonoBehaviour:
   RemainingTimeText: {fileID: 1088067948}
   gameSongAudioClip: {fileID: 8300000, guid: f3874fd8f80f9b04caf6a933ec322a82, type: 3}
   marioDeadAudioClip: {fileID: 8300000, guid: 1b59cd40be7aeb244a556f8bbae981e6, type: 3}
+  stageClearedAudioClip: {fileID: 8300000, guid: a04edb910d4908e46920f8367cc37bc3,
+    type: 3}
 --- !u!82 &435638752
 AudioSource:
   m_ObjectHideFlags: 0
