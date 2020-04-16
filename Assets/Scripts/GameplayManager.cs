@@ -7,7 +7,7 @@ public class GameplayManager : ExtendedBehaviour
     [Header("UI Components")]
     public GameObject RemainingTimeText;
 
-
+    
     public AudioClip gameSongAudioClip;
     public AudioClip marioDeadAudioClip;
 
