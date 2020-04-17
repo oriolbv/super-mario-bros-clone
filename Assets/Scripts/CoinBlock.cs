@@ -9,13 +9,20 @@ public class CoinBlock : ExtendedBehaviour
     private bool _isCoinBlockInitialState;
     public Sprite UsedBlockSprite;
 
+    public AudioClip CoinAudioClip;
+    private AudioSource coinAudioSource;
 
     private Animator animator;
+
+
 
     void Start()
     {
         _isCoinBlockInitialState = true;
         animator = this.GetComponentInChildren<Animator>();
+
+        coinAudioSource = this.GetComponentInChildren<AudioSource>();
+       
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -27,6 +34,9 @@ public class CoinBlock : ExtendedBehaviour
                 _isCoinBlockInitialState = false;
                 this.GetComponentInChildren<SpriteRenderer>().sprite = UsedBlockSprite;
                 animator.SetTrigger("useBlock");
+                // Reproduce sound
+                coinAudioSource.clip = CoinAudioClip;
+                coinAudioSource.Play();
             }
         }
     }
