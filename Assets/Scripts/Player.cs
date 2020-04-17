@@ -27,6 +27,13 @@ public class Player : ExtendedBehaviour
     public bool onGround = false;
     public float groundLength = 0.6f;
 
+    [Header("Sound Effects")]
+    private AudioSource marioJumpAudioSource;
+
+    void Start() 
+    {
+        marioJumpAudioSource = this.GetComponentInChildren<AudioSource>();
+    }
 
     void Update()
     {
@@ -75,6 +82,7 @@ public class Player : ExtendedBehaviour
         rb.velocity = new Vector2(rb.velocity.x, 0);
         rb.AddForce(Vector2.up * jumpSpeed, ForceMode2D.Impulse);
         jumpTimer = 0;
+        marioJumpAudioSource.Play();
     }
 
     void modifyPhysics()
