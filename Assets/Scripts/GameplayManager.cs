@@ -1,17 +1,19 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameplayManager : ExtendedBehaviour
 {
 
     [Header("UI Components")]
     public GameObject RemainingTimeText;
+    public GameObject ScoreText;
+    public GameObject CoinsText;
 
-
+    [Header("Sound Effects")]
     public AudioClip gameSongAudioClip;
     public AudioClip marioDeadAudioClip;
     public AudioClip stageClearedAudioClip;
-
     private AudioSource mainGameAudioSource;
 
     
@@ -27,9 +29,8 @@ public class GameplayManager : ExtendedBehaviour
 
     void Update()
     {
-        // TODO
-        GameScore.Instance.RemainingTime -= Time.deltaTime;
-        // RemainingTimeText.GetComponentInChildren<Text>().text = ((int)GameScore.Instance.RemainingTime).ToString();
+        UpdateHUD();
+        
         if (GameScore.Instance.RemainingTime < 0 || !GameScore.Instance.IsPlaying)
         {
             GameOver();
@@ -38,6 +39,20 @@ public class GameplayManager : ExtendedBehaviour
         {
             WinGame();
         }
+    }
+
+    void UpdateHUD() 
+    {
+        // Remaining time
+        GameScore.Instance.RemainingTime -= Time.deltaTime;
+        RemainingTimeText.GetComponent<Text>().text = ((int)GameScore.Instance.RemainingTime).ToString();
+        string score = ((int)GameScore.Instance.Score).ToString();
+        for (int i = score.Length; i < 6; ++i) 
+        {
+            score = "0" + score;
+        }
+        ScoreText.GetComponent<Text>().text = score;
+        CoinsText.GetComponent<Text>().text = "x" + ((int)GameScore.Instance.Coins).ToString();
     }
 
     public void GameOver() 

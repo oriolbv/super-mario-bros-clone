@@ -1183,6 +1183,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RemainingTimeText: {fileID: 1088067948}
+  ScoreText: {fileID: 118558968}
+  CoinsText: {fileID: 1630106634}
   gameSongAudioClip: {fileID: 8300000, guid: f3874fd8f80f9b04caf6a933ec322a82, type: 3}
   marioDeadAudioClip: {fileID: 8300000, guid: 1b59cd40be7aeb244a556f8bbae981e6, type: 3}
   stageClearedAudioClip: {fileID: 8300000, guid: a04edb910d4908e46920f8367cc37bc3,
@@ -9899,7 +9901,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: x00
+  m_Text: x0
 --- !u!222 &1630106637
 CanvasRenderer:
   m_ObjectHideFlags: 0

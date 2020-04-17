@@ -47,6 +47,8 @@ public class Goomba : ExtendedBehaviour
         // Reproduce sound
         goombaDieAudioSource = this.GetComponentInChildren<AudioSource>();
         goombaDieAudioSource.Play();
+        // Increase player points
+        GameScore.Instance.Score += 100;
         // Destroy object after some time
         Wait(0.6f, () => {
             Destroy(this.gameObject);

@@ -37,6 +37,9 @@ public class CoinBlock : ExtendedBehaviour
                 // Reproduce sound
                 coinAudioSource.clip = CoinAudioClip;
                 coinAudioSource.Play();
+                // Coins counter & puntuation
+                GameScore.Instance.Score += 100;
+                GameScore.Instance.Coins += 1;
             }
         }
     }
