@@ -14,6 +14,9 @@ public class Goomba : ExtendedBehaviour
 
     private bool stopMovement = false;
 
+    [Header("Sound Effects")]
+    private AudioSource goombaDieAudioSource;
+
     void Update()
     {
         if (!stopMovement)
@@ -41,6 +44,9 @@ public class Goomba : ExtendedBehaviour
         stopMovement = true;
         // Animation transition to 'goomba_dead'
         animator.SetBool("is_hurt", true);
+        // Reproduce sound
+        goombaDieAudioSource = this.GetComponentInChildren<AudioSource>();
+        goombaDieAudioSource.Play();
         // Destroy object after some time
         Wait(0.6f, () => {
             Destroy(this.gameObject);
