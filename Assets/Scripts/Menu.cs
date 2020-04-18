@@ -9,6 +9,7 @@ public class Menu : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Return))
         {
+            GameScore.Instance.initGameLives();
             SceneManager.LoadScene("LevelMenuScene");
         }
     }

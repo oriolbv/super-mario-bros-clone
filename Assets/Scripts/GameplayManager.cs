@@ -63,6 +63,8 @@ public class GameplayManager : ExtendedBehaviour
         // Change clip from Audio Source
         mainGameAudioSource.clip = marioDeadAudioClip;
         mainGameAudioSource.Play();
+        // Update lives counter
+        GameScore.Instance.Lives -= 1;
         Wait(3f, () => {
             SceneManager.LoadScene("LevelMenuScene");
         });
