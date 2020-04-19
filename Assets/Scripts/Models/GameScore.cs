@@ -18,7 +18,6 @@ public class GameScore : Singleton<GameScore>
 
     public void initGameScore() 
     {
-        _lives = 3;
         _score = 0;
         _coins = 0;
         _remainingTime = 300;

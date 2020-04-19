@@ -66,7 +66,14 @@ public class GameplayManager : ExtendedBehaviour
         // Update lives counter
         GameScore.Instance.Lives -= 1;
         Wait(3f, () => {
-            SceneManager.LoadScene("LevelMenuScene");
+            if (GameScore.Instance.Lives > 0)
+            {
+                SceneManager.LoadScene("LevelMenuScene");
+            }
+            else
+            {
+                SceneManager.LoadScene("MenuScene");
+            }
         });
     }
 
