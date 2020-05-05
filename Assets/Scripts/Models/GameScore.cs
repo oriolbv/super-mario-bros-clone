@@ -12,6 +12,8 @@ public class GameScore : Singleton<GameScore>
     private bool _isPlaying;
     private bool _isWinner;
 
+    private bool _isCheckpointActive;
+
     public GameScore() 
     {
     }
@@ -28,6 +30,7 @@ public class GameScore : Singleton<GameScore>
     public void initGameLives() 
     {
         _lives = 3;
+        _isCheckpointActive = false;
     }
 
     // Properties
@@ -100,6 +103,18 @@ public class GameScore : Singleton<GameScore>
         set 
         { 
             _isWinner = value; 
+        }
+    }
+
+    public bool IsCheckpointActive 
+    {
+        get
+        {
+            return _isCheckpointActive;
+        }
+        set
+        {
+            _isCheckpointActive = value;
         }
     }
 }

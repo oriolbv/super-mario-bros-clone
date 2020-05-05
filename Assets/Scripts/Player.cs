@@ -160,6 +160,10 @@ public class Player : ExtendedBehaviour
         {
             GameScore.Instance.IsWinner = true;
         }
+        else if (other.gameObject.CompareTag("Checkpoint")) 
+        {
+            GameScore.Instance.IsCheckpointActive = true;
+        }
     }
 
 
