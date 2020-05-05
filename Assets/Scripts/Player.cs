@@ -33,6 +33,11 @@ public class Player : ExtendedBehaviour
     void Start() 
     {
         marioJumpAudioSource = this.GetComponentInChildren<AudioSource>();
+        if (GameScore.Instance.IsCheckpointActive == true) 
+        {
+            transform.position = new Vector3(transform.position.x + 81f, transform.position.y, transform.position.z);
+            Camera.main.transform.position = new Vector3(Camera.main.transform.position.x + 80f, Camera.main.transform.position.y, Camera.main.transform.position.z);
+        }
     }
 
     void Update()
@@ -162,6 +167,7 @@ public class Player : ExtendedBehaviour
         }
         else if (other.gameObject.CompareTag("Checkpoint")) 
         {
+            Debug.Log("CHECKPOINT BRO");
             GameScore.Instance.IsCheckpointActive = true;
         }
     }
