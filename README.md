@@ -5,12 +5,12 @@ Super Mario Bros level 1-1 clone in Unity3D with some extra features.
 You can play Super Mario Bros clone using A/D or <-/-> to run, CTRL to shoot and SPACE to jump. 
 
 ## New features
-- Include all the animations.
-- Include some particle system.
-- Add AI into enemies.
-- Mario should be able to shoot fireballs.
-- Add Checkpoints into the level.
-- Use Tags and Layers.
+- \[X] Include all the animations.
+- \[ ] Include some particle system.
+- \[ ] Add AI into enemies.
+- \[ ] Mario should be able to shoot fireballs.
+- \[X] Add Checkpoints into the level.
+- \[X] Use Tags and Layers.
 
 ## Documentation
 You can find a short Game Design document in the following [link](https://gitlab.com/oriolbv/pec2_oriol.burgaya/-/blob/master/Doc/SuperMarioBrosClone_0.1.0.pdf), or in the Doc folder.
