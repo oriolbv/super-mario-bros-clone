@@ -9,6 +9,14 @@ public class Player : ExtendedBehaviour
     private Vector2 direction;
     private bool movingRight = true;
 
+    [Header("Special Movements")]
+    public GameObject Fireball;
+    public Transform FireballPosition;
+    private bool shootingFireball = false;
+    private float initialShootTime, actualShootTime;
+    private float totalShootWait = .2f;
+
+
     [Header("Components")]
     public Rigidbody2D rb;
     public Animator animator;
@@ -38,6 +46,9 @@ public class Player : ExtendedBehaviour
             transform.position = new Vector3(transform.position.x + 81f, transform.position.y, transform.position.z);
             Camera.main.transform.position = new Vector3(Camera.main.transform.position.x + 80f, Camera.main.transform.position.y, Camera.main.transform.position.z);
         }
+
+        actualShootTime = 0;
+        initialShootTime = 0;
     }
 
     void Update()
@@ -49,20 +60,41 @@ public class Player : ExtendedBehaviour
         {
             jumpTimer = Time.time + jumpDelay;
         }
+        shootingFireball = Input.GetButtonDown("Fire1");
 
         // Left direction: -1 | Idle: 0 | Right direction: 1
         direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
     }
 
-    void FixedUpdate() 
+    void FixedUpdate()
     {
         moveCharacter(direction.x);
-        if (jumpTimer > Time.time  && onGround) 
+
+        if (shootingFireball)
+        {
+            Debug.Log("SHOOT!");
+            shootingFireball = false;
+            actualShootTime = Time.time;
+
+            if (actualShootTime - initialShootTime >= totalShootWait)
+            {
+                animator.SetTrigger("is_shooting");
+                GameObject fireball = Instantiate(Fireball, FireballPosition.position, Quaternion.identity);
+                //fireball.GetComponent<MarioFireball>().directionX = transform.localScale.x;
+                // Reproduce shoot sound
+                //t_LevelManager.soundSource.PlayOneShot(t_LevelManager.fireballSound);
+                initialShootTime = Time.time;
+            }
+        }
+
+        if (jumpTimer > Time.time && onGround)
         {
             Jump();
         }
 
         modifyPhysics();
+
+        
     }
 
     void moveCharacter(float horizontal) 
