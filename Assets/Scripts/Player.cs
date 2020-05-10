@@ -60,17 +60,7 @@ public class Player : ExtendedBehaviour
         {
             jumpTimer = Time.time + jumpDelay;
         }
-        shootingFireball = Input.GetButtonDown("Fire1");
-
-        // Left direction: -1 | Idle: 0 | Right direction: 1
-        direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-    }
-
-    void FixedUpdate()
-    {
-        moveCharacter(direction.x);
-
-        if (shootingFireball)
+        if (Input.GetButtonDown("Fire1") && !shootingFireball)
         {
             Debug.Log("SHOOT!");
             shootingFireball = false;
@@ -80,12 +70,20 @@ public class Player : ExtendedBehaviour
             {
                 animator.SetTrigger("is_shooting");
                 GameObject fireball = Instantiate(Fireball, FireballPosition.position, Quaternion.identity);
-                //fireball.GetComponent<MarioFireball>().directionX = transform.localScale.x;
+                fireball.GetComponent<Fireball>().directionX = transform.localScale.x;
                 // Reproduce shoot sound
                 //t_LevelManager.soundSource.PlayOneShot(t_LevelManager.fireballSound);
                 initialShootTime = Time.time;
             }
         }
+
+        // Left direction: -1 | Idle: 0 | Right direction: 1
+        direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+    }
+
+    void FixedUpdate()
+    {
+        moveCharacter(direction.x);
 
         if (jumpTimer > Time.time && onGround)
         {

@@ -6,8 +6,8 @@ public class Fireball : MonoBehaviour
 {
 
     public float directionX; // > 0 for right, < 0 for left
-    private float explosionDuration = .25f;
-    private Vector2 absVelocity = new Vector2(20, 11);
+    private float explosionDuration = .75f;
+    private Vector2 absVelocity = new Vector2(11, 11);
 
     private Rigidbody2D rigidbody;
     private Animator animator;
@@ -33,24 +33,39 @@ public class Fireball : MonoBehaviour
         Destroy(gameObject, explosionDuration);
     }
 
-    void OnCollisionEnter2D(Collision2D other)
+    void ExplodeImmediately()
     {
-        Vector2 normal = other.contacts[0].normal;
-        Vector2 leftSide = new Vector2(-1f, 0f);
-        Vector2 rightSide = new Vector2(1f, 0f);
-        Vector2 bottomSide = new Vector2(0f, 1f);
+        Destroy(gameObject, 0);
+    }
 
-        if (normal == leftSide || normal == rightSide)
-        { // explode if side hit
-            Explode();
-        }
-        else if (normal == bottomSide)
-        { // bounce off
-            rigidbody.velocity = new Vector2(rigidbody.velocity.x, absVelocity.y);
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        Goomba goomba = collision.collider.GetComponent<Goomba>();
+        if (goomba != null)
+        {
+            // Fireball has kicked a goomba
+            goomba.Hurt();
+            ExplodeImmediately();
         }
         else
         {
-            rigidbody.velocity = new Vector2(rigidbody.velocity.x, -absVelocity.y);
+            Vector2 normal = collision.contacts[0].normal;
+            Vector2 leftSide = new Vector2(-1f, 0f);
+            Vector2 rightSide = new Vector2(1f, 0f);
+            Vector2 bottomSide = new Vector2(0f, 1f);
+
+            if (normal == leftSide || normal == rightSide)
+            { // explode if side hit
+                Explode();
+            }
+            else if (normal == bottomSide)
+            { // bounce off
+                rigidbody.velocity = new Vector2(rigidbody.velocity.x, absVelocity.y);
+            }
+            else
+            {
+                rigidbody.velocity = new Vector2(rigidbody.velocity.x, -absVelocity.y);
+            }
         }
     }
 
