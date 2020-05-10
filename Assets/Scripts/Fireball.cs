@@ -5,7 +5,7 @@ using UnityEngine;
 public class Fireball : MonoBehaviour
 {
 
-    public float directionX; // > 0 for right, < 0 for left
+    public float directionX = 1; // > 0 for right, < 0 for left
     private float explosionDuration = .75f;
     private Vector2 absVelocity = new Vector2(11, 11);
 

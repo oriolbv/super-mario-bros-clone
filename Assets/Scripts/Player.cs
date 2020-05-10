@@ -70,7 +70,7 @@ public class Player : ExtendedBehaviour
             {
                 animator.SetTrigger("is_shooting");
                 GameObject fireball = Instantiate(Fireball, FireballPosition.position, Quaternion.identity);
-                fireball.GetComponent<Fireball>().directionX = transform.localScale.x;
+                fireball.GetComponent<Fireball>().directionX = movingRight ? 1 : -1;
                 // Reproduce shoot sound
                 //t_LevelManager.soundSource.PlayOneShot(t_LevelManager.fireballSound);
                 initialShootTime = Time.time;
@@ -211,5 +211,13 @@ public class Player : ExtendedBehaviour
         rb.velocity = velocity;
         Destroy(this.GetComponent<CapsuleCollider2D>());
         GameScore.Instance.IsPlaying = false;
+    }
+
+    public bool MovingRight
+    {
+        get
+        {
+            return movingRight;
+        }
     }
 }
