@@ -16,7 +16,6 @@ public class Player : ExtendedBehaviour
     private float initialShootTime, actualShootTime;
     private float totalShootWait = .2f;
 
-
     [Header("Components")]
     public Rigidbody2D rb;
     public Animator animator;
@@ -37,6 +36,10 @@ public class Player : ExtendedBehaviour
 
     [Header("Sound Effects")]
     private AudioSource marioJumpAudioSource;
+
+    [Header("Particle Systems")]
+    public ParticleSystem CheckpointParticleSystem;
+    public ParticleSystem FinishParticleSystem;
 
     void Start() 
     {
@@ -191,14 +194,17 @@ public class Player : ExtendedBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        // Checking trigger using different tags
         if (other.gameObject.CompareTag("Finish"))
         {
+            // End level
             GameScore.Instance.IsWinner = true;
         }
         else if (other.gameObject.CompareTag("Checkpoint")) 
         {
-            Debug.Log("CHECKPOINT BRO");
+            // Checkpoint reached
             GameScore.Instance.IsCheckpointActive = true;
+            CheckpointParticleSystem.Play();
         }
     }
 
