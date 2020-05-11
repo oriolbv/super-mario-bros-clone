@@ -7,6 +7,8 @@ public class FlowerBlock : MonoBehaviour
     private bool _isFlowerBlockInitialState;
     public Sprite UsedBlockSprite;
 
+    public GameObject Flower;
+
     private AudioSource blockAudioSource;
 
     private Animator animator;
@@ -30,6 +32,9 @@ public class FlowerBlock : MonoBehaviour
                 animator.SetTrigger("useBlock");
                 // Reproduce sound
                 blockAudioSource.Play();
+                Flower.GetComponent<BoxCollider2D>().isTrigger = false;
+
+                
             }
         }
     }
