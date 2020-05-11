@@ -39,7 +39,8 @@ public class Player : ExtendedBehaviour
 
     [Header("Particle Systems")]
     public ParticleSystem CheckpointParticleSystem;
-    public ParticleSystem FinishParticleSystem;
+    public ParticleSystem Finish1ParticleSystem;
+    public ParticleSystem Finish2ParticleSystem;
 
     void Start() 
     {
@@ -199,6 +200,8 @@ public class Player : ExtendedBehaviour
         {
             // End level
             GameScore.Instance.IsWinner = true;
+            Finish1ParticleSystem.Play();
+            Finish2ParticleSystem.Play();
         }
         else if (other.gameObject.CompareTag("Checkpoint")) 
         {
