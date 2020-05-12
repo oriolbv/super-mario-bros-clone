@@ -32,8 +32,9 @@ public class FlowerBlock : MonoBehaviour
                 animator.SetTrigger("useBlock");
                 // Reproduce sound
                 blockAudioSource.Play();
-                Flower.GetComponent<BoxCollider2D>().isTrigger = false;
 
+                // Mario to Fire state
+                collision.collider.GetComponent<Player>().UpdateMarioState(1);
                 
             }
         }

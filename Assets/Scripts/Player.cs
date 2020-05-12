@@ -222,6 +222,11 @@ public class Player : ExtendedBehaviour
         GameScore.Instance.IsPlaying = false;
     }
 
+    public void UpdateMarioState(int marioState) {
+        Debug.Log("Changing mario state: " + marioState.ToString());
+		animator.SetInteger("mario_state", marioState);
+	}
+
     public bool MovingRight
     {
         get
