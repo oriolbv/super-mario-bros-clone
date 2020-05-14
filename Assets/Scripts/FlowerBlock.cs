@@ -34,7 +34,7 @@ public class FlowerBlock : MonoBehaviour
                 blockAudioSource.Play();
 
                 // Mario to Fire state
-                collision.collider.GetComponent<Player>().UpdateMarioState(1);
+                collision.collider.GetComponent<Player>().UpdateMarioState(0);
                 
             }
         }

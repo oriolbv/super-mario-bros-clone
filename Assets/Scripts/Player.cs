@@ -224,7 +224,11 @@ public class Player : ExtendedBehaviour
 
     public void UpdateMarioState(int marioState) {
         Debug.Log("Changing mario state: " + marioState.ToString());
-		animator.SetInteger("mario_state", marioState);
+        animator.SetInteger("mario_state", marioState);
+        animator.SetBool("is_changing_state", true);
+        animator.SetBool("is_changing_state", false);
+
+        
 	}
 
     public bool MovingRight
