@@ -2,6 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum PlayerState
+{
+    Small = 0,
+    Fire = 1
+}
+
+
 public class Player : ExtendedBehaviour
 {
     [Header("Horizontal Movement")]
@@ -42,6 +49,9 @@ public class Player : ExtendedBehaviour
     public ParticleSystem Finish1ParticleSystem;
     public ParticleSystem Finish2ParticleSystem;
 
+    [Header("Player information")]
+    private PlayerState actualPlayerState;
+
     void Start() 
     {
         marioJumpAudioSource = this.GetComponentInChildren<AudioSource>();
@@ -53,12 +63,14 @@ public class Player : ExtendedBehaviour
 
         actualShootTime = 0;
         initialShootTime = 0;
+
+        actualPlayerState = PlayerState.Small;
     }
 
     void Update()
     {
         onGround = Physics2D.Raycast(transform.position, Vector2.down, groundLength, groundLayer);
-
+        // TODO: change groundLength depending on mario state
         animator.SetBool("on_ground", onGround);
         if (Input.GetButtonDown("Jump")) 
         {
@@ -222,16 +234,18 @@ public class Player : ExtendedBehaviour
         GameScore.Instance.IsPlaying = false;
     }
 
-    public void UpdateMarioState(int marioState) {
+    public void UpdateMarioState(PlayerState marioState) {
         Debug.Log("Changing mario state: " + marioState.ToString());
+        // Updating actualPlayerState variable
+        actualPlayerState = marioState;
+        // Set 
         animator.SetBool("is_changing_state", true);
-        animator.SetInteger("mario_state", marioState);
+        animator.SetInteger("mario_state", (int) marioState);
         Wait(1f, () => {
-                    animator.SetBool("is_changing_state", false);
-                });
-        
-
-        
+            animator.SetBool("is_changing_state", false);
+            Destroy(this.GetComponent<CapsuleCollider2D>());
+            this.gameObject.AddComponent<CapsuleCollider2D>();
+        });
 	}
 
     public bool MovingRight
