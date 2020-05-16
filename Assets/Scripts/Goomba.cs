@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Goomba : ExtendedBehaviour
 {
@@ -9,25 +10,52 @@ public class Goomba : ExtendedBehaviour
     public Rigidbody2D rb;
     public Animator animator;
 
+    [Header("Movement")]
     public float Speed;
     public bool MoveRight;
-
+    public GameObject Player;
     private bool stopMovement = false;
+    private float minDistance = 1;
+    private float maxDistance = 5;
+
+
 
     [Header("Sound Effects")]
     private AudioSource goombaDieAudioSource;
 
+
     void Update()
     {
+        // Check player distance
+        float position = this.transform.position.x;
+        float playerPosition = Player.transform.position.x;
+        float distance = Math.Abs(position) - Math.Abs(playerPosition);
+
         if (!stopMovement)
         {
-            if (MoveRight)
+            if ((distance >= minDistance) && (distance <= maxDistance))
             {
+                // Mario is in front of the goomba
+                transform.Translate(-2 * Time.deltaTime * Speed, 0, 0);
+                MoveRight = true;
+            }
+            else if ((distance <= -minDistance) && (distance >= -maxDistance))
+            {
+                // Mario is behind the goomba
                 transform.Translate(2 * Time.deltaTime * Speed, 0, 0);
+                MoveRight = false;
             }
             else
             {
-                transform.Translate(-2 * Time.deltaTime * Speed, 0, 0);
+                // Normal movement
+                if (MoveRight)
+                {
+                    transform.Translate(2 * Time.deltaTime * Speed, 0, 0);
+                }
+                else
+                {
+                    transform.Translate(-2 * Time.deltaTime * Speed, 0, 0);
+                }
             }
         }
     }

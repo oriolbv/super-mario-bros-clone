@@ -70,8 +70,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 8142560336219537441}
   animator: {fileID: 8142560337568542636}
-  Speed: 2
+  Speed: 1.5
   MoveRight: 0
+  Player: {fileID: 0}
 --- !u!70 &8142560336219537443
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

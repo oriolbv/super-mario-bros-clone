@@ -70,16 +70,14 @@ public class Player : ExtendedBehaviour
     void Update()
     {
         onGround = Physics2D.Raycast(transform.position, Vector2.down, groundLength, groundLayer);
-        // TODO: change groundLength depending on mario state
         animator.SetBool("on_ground", onGround);
-        Debug.Log(onGround);
+
         if (Input.GetButtonDown("Jump")) 
         {
             jumpTimer = Time.time + jumpDelay;
         }
         if (Input.GetButtonDown("Fire1") && !shootingFireball)
         {
-            Debug.Log("SHOOT!");
             shootingFireball = false;
             actualShootTime = Time.time;
 
@@ -88,7 +86,7 @@ public class Player : ExtendedBehaviour
                 animator.SetTrigger("is_shooting");
                 GameObject fireball = Instantiate(Fireball, FireballPosition.position, Quaternion.identity);
                 fireball.GetComponent<Fireball>().directionX = movingRight ? 1 : -1;
-                // TO-DO: Reproduce shoot sound
+                // TODO: Reproduce shoot sound
                 initialShootTime = Time.time;
             }
         }
@@ -237,13 +235,13 @@ public class Player : ExtendedBehaviour
         }
         else
         {
+            // TODO: Add sound
             UpdateMarioState(PlayerState.Small);
         }
         
     }
 
     public void UpdateMarioState(PlayerState marioState) {
-        Debug.Log("Changing mario state: " + marioState.ToString());
         // Updating actualPlayerState variable
         actualPlayerState = marioState;
         // Set bool variable to change state
