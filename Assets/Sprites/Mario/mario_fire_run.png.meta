@@ -12,7 +12,7 @@ TextureImporter:
       213: 2913771770292616384
     second: mario_fire_run_2
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 10
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -66,7 +66,6 @@ TextureImporter:
   maxTextureSizeSet: 0
   compressionQualitySet: 0
   textureFormatSet: 0
-  applyGammaDecoding: 0
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -101,8 +100,8 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 14
-        height: 31
+        width: 12
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -120,10 +119,10 @@ TextureImporter:
       name: mario_fire_run_1
       rect:
         serializedVersion: 2
-        x: 20
-        y: 1
-        width: 16
-        height: 30
+        x: 15
+        y: 0
+        width: 14
+        height: 15
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,10 +140,10 @@ TextureImporter:
       name: mario_fire_run_2
       rect:
         serializedVersion: 2
-        x: 45
+        x: 32
         y: 0
-        width: 16
-        height: 32
+        width: 15
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

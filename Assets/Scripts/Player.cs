@@ -72,6 +72,7 @@ public class Player : ExtendedBehaviour
         onGround = Physics2D.Raycast(transform.position, Vector2.down, groundLength, groundLayer);
         // TODO: change groundLength depending on mario state
         animator.SetBool("on_ground", onGround);
+        Debug.Log(onGround);
         if (Input.GetButtonDown("Jump")) 
         {
             jumpTimer = Time.time + jumpDelay;
@@ -87,8 +88,7 @@ public class Player : ExtendedBehaviour
                 animator.SetTrigger("is_shooting");
                 GameObject fireball = Instantiate(Fireball, FireballPosition.position, Quaternion.identity);
                 fireball.GetComponent<Fireball>().directionX = movingRight ? 1 : -1;
-                // Reproduce shoot sound
-                //t_LevelManager.soundSource.PlayOneShot(t_LevelManager.fireballSound);
+                // TO-DO: Reproduce shoot sound
                 initialShootTime = Time.time;
             }
         }
@@ -243,8 +243,6 @@ public class Player : ExtendedBehaviour
         animator.SetInteger("mario_state", (int) marioState);
         Wait(1f, () => {
             animator.SetBool("is_changing_state", false);
-            Destroy(this.GetComponent<CapsuleCollider2D>());
-            this.gameObject.AddComponent<CapsuleCollider2D>();
         });
 	}
 
