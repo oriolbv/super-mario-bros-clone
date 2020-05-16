@@ -7,7 +7,7 @@ You can play Super Mario Bros clone using A/D or <-/-> to run, CTRL to shoot and
 ## New features
 - \[X] Include all the animations.
 - \[X] Include some particle system.
-- \[ ] Add AI into enemies.
+- \[X] Add AI into enemies.
 - \[X] Mario should be able to shoot fireballs.
 - \[X] Add Checkpoints into the level.
 - \[X] Use Tags and Layers.
