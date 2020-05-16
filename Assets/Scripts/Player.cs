@@ -226,22 +226,32 @@ public class Player : ExtendedBehaviour
 
     void Hurt()
     {
-        animator.SetBool("is_alive", false);
-        Vector2 velocity = rb.velocity;
-        velocity.y = jumpSpeed;
-        rb.velocity = velocity;
-        Destroy(this.GetComponent<CapsuleCollider2D>());
-        GameScore.Instance.IsPlaying = false;
+        if (actualPlayerState == PlayerState.Small)
+        {
+            animator.SetBool("is_alive", false);
+            Vector2 velocity = rb.velocity;
+            velocity.y = jumpSpeed;
+            rb.velocity = velocity;
+            Destroy(this.GetComponent<CapsuleCollider2D>());
+            GameScore.Instance.IsPlaying = false;
+        }
+        else
+        {
+            UpdateMarioState(PlayerState.Small);
+        }
+        
     }
 
     public void UpdateMarioState(PlayerState marioState) {
         Debug.Log("Changing mario state: " + marioState.ToString());
         // Updating actualPlayerState variable
         actualPlayerState = marioState;
-        // Set 
+        // Set bool variable to change state
         animator.SetBool("is_changing_state", true);
+        // Set state identifier to change animations
         animator.SetInteger("mario_state", (int) marioState);
         Wait(0.3f, () => {
+            // After waiting a little, unset is_changing_state flag
             animator.SetBool("is_changing_state", false);
         });
 	}
