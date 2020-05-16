@@ -76,7 +76,7 @@ public class Player : ExtendedBehaviour
         {
             jumpTimer = Time.time + jumpDelay;
         }
-        if (Input.GetButtonDown("Fire1") && !shootingFireball)
+        if (Input.GetButtonDown("Fire1") && (actualPlayerState == PlayerState.Fire) && !shootingFireball)
         {
             shootingFireball = false;
             actualShootTime = Time.time;
