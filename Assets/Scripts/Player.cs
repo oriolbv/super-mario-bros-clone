@@ -241,7 +241,7 @@ public class Player : ExtendedBehaviour
         // Set 
         animator.SetBool("is_changing_state", true);
         animator.SetInteger("mario_state", (int) marioState);
-        Wait(1f, () => {
+        Wait(0.3f, () => {
             animator.SetBool("is_changing_state", false);
         });
 	}
