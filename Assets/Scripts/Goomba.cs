@@ -35,13 +35,11 @@ public class Goomba : ExtendedBehaviour
             {
                 // Mario is in front of the goomba
                 transform.Translate(-2 * Time.deltaTime * Speed, 0, 0);
-                MoveRight = true;
             }
             else if ((distance <= -minDistance) && (distance >= -maxDistance))
             {
                 // Mario is behind the goomba
                 transform.Translate(2 * Time.deltaTime * Speed, 0, 0);
-                MoveRight = false;
             }
             else
             {
