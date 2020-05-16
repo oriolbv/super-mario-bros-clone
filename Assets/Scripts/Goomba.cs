@@ -18,8 +18,6 @@ public class Goomba : ExtendedBehaviour
     private float minDistance = 1;
     private float maxDistance = 5;
 
-
-
     [Header("Sound Effects")]
     private AudioSource goombaDieAudioSource;
 
@@ -62,6 +60,7 @@ public class Goomba : ExtendedBehaviour
     
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        // If goomba collides with a wall or another goomba, change movement direction
         if (collision.gameObject.CompareTag("Wall") || collision.gameObject.CompareTag("Enemy"))
         {
             MoveRight = !MoveRight;
