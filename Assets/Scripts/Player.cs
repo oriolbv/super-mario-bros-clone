@@ -42,7 +42,10 @@ public class Player : ExtendedBehaviour
     public float groundLength = 0.6f;
 
     [Header("Sound Effects")]
-    private AudioSource marioJumpAudioSource;
+    private AudioSource marioAudioSource;
+    public AudioClip JumpAudioClip;
+    public AudioClip PowerupAudioClip;
+    public AudioClip ShootAudioClip;
 
     [Header("Particle Systems")]
     public ParticleSystem CheckpointParticleSystem;
@@ -54,7 +57,7 @@ public class Player : ExtendedBehaviour
 
     void Start() 
     {
-        marioJumpAudioSource = this.GetComponentInChildren<AudioSource>();
+        marioAudioSource = this.GetComponentInChildren<AudioSource>();
         if (GameScore.Instance.IsCheckpointActive == true) 
         {
             transform.position = new Vector3(transform.position.x + 81f, transform.position.y, transform.position.z);
@@ -86,7 +89,9 @@ public class Player : ExtendedBehaviour
                 animator.SetTrigger("is_shooting");
                 GameObject fireball = Instantiate(Fireball, FireballPosition.position, Quaternion.identity);
                 fireball.GetComponent<Fireball>().directionX = movingRight ? 1 : -1;
-                // TODO: Reproduce shoot sound
+                // Play shoot sound
+                marioAudioSource.clip = ShootAudioClip;
+                marioAudioSource.Play();
                 initialShootTime = Time.time;
             }
         }
@@ -131,7 +136,8 @@ public class Player : ExtendedBehaviour
         rb.velocity = new Vector2(rb.velocity.x, 0);
         rb.AddForce(Vector2.up * jumpSpeed, ForceMode2D.Impulse);
         jumpTimer = 0;
-        marioJumpAudioSource.Play();
+        marioAudioSource.clip = JumpAudioClip;
+        marioAudioSource.Play();
     }
 
     void modifyPhysics()
@@ -248,6 +254,12 @@ public class Player : ExtendedBehaviour
         animator.SetBool("is_changing_state", true);
         // Set state identifier to change animations
         animator.SetInteger("mario_state", (int) marioState);
+        if (marioState == PlayerState.Fire)
+        {
+            // Play powerup sound
+            marioAudioSource.clip = PowerupAudioClip;
+            marioAudioSource.Play();
+        }
         Wait(0.3f, () => {
             // After waiting a little, unset is_changing_state flag
             animator.SetBool("is_changing_state", false);
