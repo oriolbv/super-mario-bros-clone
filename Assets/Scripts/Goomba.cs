@@ -15,7 +15,7 @@ public class Goomba : ExtendedBehaviour
     public bool MoveRight;
     public GameObject Player;
     private bool stopMovement = false;
-    private float minDistance = 1;
+    private float minDistance = 0;
     private float maxDistance = 5;
 
     [Header("Sound Effects")]
