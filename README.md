@@ -16,3 +16,5 @@ You can play Super Mario Bros clone using A/D or <-/-> to run, CTRL to shoot and
 You can find a short Game Design document in the following [link](https://gitlab.com/oriolbv/pec3_oriol.burgaya/-/blob/master/Doc/SuperMarioBrosClone_0.5.0.pdf), or in the Doc folder.
 
 Also, there is a video showing the full gameplay [here](https://gitlab.com/oriolbv/pec3_oriol.burgaya/-/blob/master/Doc/super_mario_bros_clone.mkv), or in the Doc folder.
+
+![Alt text](Doc/screenshot.png?raw=true "In game screenshot")
